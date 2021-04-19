@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.io.IOException;
+
 public class MainActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private Button playButton;
@@ -17,7 +19,12 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         mediaPlayer = new MediaPlayer();
-        mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.party);
+        try {
+            mediaPlayer.setDataSource("https://buildappswithpaulo.com/music/watch_me.mp3");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //mediaPlayer = MediaPlayer.create(MainActivity.this, R.raw.party);
 
         playButton = findViewById(R.id.play_button);
         playButton.setOnClickListener(new View.OnClickListener() {
